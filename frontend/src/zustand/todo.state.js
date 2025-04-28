@@ -70,3 +70,5 @@ const store = create((set) => ({
         }
     }
 }));
+
+export default store;
