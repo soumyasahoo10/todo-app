@@ -13,8 +13,8 @@ export default function Sidebar({todos}) {
   };
 
   return (
-    <div className='flex items-start font-light h-[calc(100vh-4rem)] overflow-auto overflow-x-hidden'>
-      <Side collapsed={isopen} collapsedWidth='150px' width='280px' transitionDuration='200'>
+    <div className='flex items-center font-light m-1 bg-slate-700 rounded-xl no-scrollbar overflow-y-auto'>
+      <Side collapsed={isopen} collapsedWidth='150px' width='280px' transitionDuration='200' className='h-screen'>
         <Menu>
           <div className='flex'>
             <p className='p-3 text-center'>Recent</p>
