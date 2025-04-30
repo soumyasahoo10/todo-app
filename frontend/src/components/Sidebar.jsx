@@ -13,17 +13,12 @@ export default function Sidebar({todos}) {
   };
 
   return (
-    <div className='flex items-center font-light m-1 bg-slate-700 rounded-xl no-scrollbar overflow-y-auto'>
+    <div className='h-screen bg-slate-700 rounded-xl overflow-hidden'>
       <Side collapsed={isopen} collapsedWidth='150px' width='280px' transitionDuration='200' className='h-screen'>
         <Menu>
           <div className='flex'>
             <p className='p-3 text-center'>Recent</p>
-            <hr />
-            {isopen ? (
-              <button className='absolute m-2.5 p-2.5 top-0 right-0 duration-300 hover:cursor-pointer hover:bg-slate-200' onClick={handleToggle}><MdDoubleArrow /></button>
-            ) : (
-              <button className='absolute m-2.5 p-2.5 top-0 right-0 duration-300 hover:cursor-pointer rotate-180  hover:bg-slate-200' onClick={handleToggle}><MdDoubleArrow /></button>
-            )}
+            <button className={`absolute m-2.5 p-2.5 right-3 duration-300 hover:cursor-pointer hover:bg-slate-200 ${isopen ? '' : 'rotate-180 right-8'}`} onClick={handleToggle}><MdDoubleArrow /></button>
           </div>
           {todos.map((e) => (
             <MenuItem className='hover:font-normal' key={e._id} onClick={() => setTodo(e)}>

@@ -27,13 +27,13 @@ function App() {
   }, [products])
 
   return (
-    <>
+    <div className=''>
       <Navbar />
-      <div className='flex'>
+      <div className='flex m-1 gap-1'>
         <Sidebar todos={products} />
         <Display />
       </div>
-    </>
+    </div>
   )
 }
 

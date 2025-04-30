@@ -23,7 +23,7 @@ function Display() {
   }
   
     return (
-    <div className="flex h-screen w-screen bg-slate-100">
+    <div className="flex h-screen rounded-xl w-screen bg-slate-100">
       <div className="flex-1 p-8">
         {selectedTodo ? (
           <div>
