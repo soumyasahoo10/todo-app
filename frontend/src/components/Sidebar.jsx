@@ -1,17 +1,19 @@
-import { Sidebar as Side, Menu, MenuItem, SubMenu } from'react-pro-sidebar'
+import { Sidebar as Side, Menu, MenuItem } from'react-pro-sidebar'
 import { MdDoubleArrow } from "react-icons/md";
-
 import React, { useState } from 'react'
+import store from '../zustand/todo.state';
 
 export default function Sidebar({todos}) {
   const [isopen, setIsopen] = useState('false');
+
+  const setTodo = store((state) => (state.setSelectedTodo));
   
   const handleToggle = () => {
     setIsopen((prev) => (!prev))
   };
 
   return (
-    <div className='flex items-center font-light'>
+    <div className='flex items-start font-light h-[calc(100vh-4rem)] overflow-auto overflow-x-hidden'>
       <Side collapsed={isopen} collapsedWidth='150px' width='280px' transitionDuration='200'>
         <Menu>
           <div className='flex'>
@@ -24,7 +26,7 @@ export default function Sidebar({todos}) {
             )}
           </div>
           {todos.map((e) => (
-            <MenuItem className='hover:font-normal' key={e._id}>
+            <MenuItem className='hover:font-normal' key={e._id} onClick={() => setTodo(e)}>
               {e.title}
             </MenuItem>
           ))}

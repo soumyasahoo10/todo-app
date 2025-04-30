@@ -3,6 +3,7 @@ import './App.css'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import store from './zustand/todo.state'
+import Display from './components/Display'
 
 function App() {
   const fetchTodo = store((state) => state.fetchTodo);
@@ -20,15 +21,18 @@ function App() {
   }, [fetchTodo])
 
   useEffect(() => {
-    products.map((e) => {
-      console.log(e);
-    })
+    console.log(products);
+    // products.map((e) => {
+    // })
   }, [products])
 
   return (
     <>
       <Navbar />
-      <Sidebar todos={products}/>
+      <div className='flex'>
+        <Sidebar todos={products} />
+        <Display />
+      </div>
     </>
   )
 }

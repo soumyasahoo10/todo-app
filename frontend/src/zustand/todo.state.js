@@ -2,7 +2,13 @@ import { create } from 'zustand';
 
 const store = create((set) => ({
     todos: [],
+    selectedTodo: null,
 
+
+    // set the todo for display
+    setSelectedTodo: ((todo) => set({selectedTodo: todo})),
+
+    
     // fetch all todos
     fetchTodo: async () => {
         const response = await fetch('http://localhost:3000/api/', {
