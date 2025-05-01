@@ -20,11 +20,11 @@ function App() {
     fetchData();    
   }, [fetchTodo])
 
-  useEffect(() => {
-    console.log(products);
-    // products.map((e) => {
-    // })
-  }, [products])
+  // useEffect(() => {
+  //   // console.log(products);
+  //   // products.map((e) => {
+  //   // })
+  // }, [products])
 
   return (
     <div className=''>

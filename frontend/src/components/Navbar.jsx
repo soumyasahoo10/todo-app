@@ -21,7 +21,7 @@ function Navbar() {
           />
         </div>
         <div className="my-auto uppercase font-extrabold text-lg text-zinc-950">
-          Harmony
+          Slate
         </div>
       </div>
       <nav className="flex sm:flex-row flex-col gap-10 justify-center items-center self-stretch my-auto text-base text-center text-neutral-900 font-light w-full sm:w-auto">
