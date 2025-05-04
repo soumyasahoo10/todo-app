@@ -1,5 +1,5 @@
-
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom'
 
 function Navbar() {
   const navItems = [
@@ -20,7 +20,7 @@ function Navbar() {
             alt="Logo"
           />
         </div>
-        <div className="my-auto uppercase font-extrabold text-lg text-zinc-950">
+        <div className="my-auto uppercase font-extrabold underline decoration-wavy text-3xl text-zinc-950">
           Slate
         </div>
       </div>
@@ -31,12 +31,20 @@ function Navbar() {
           </div>
         ))}
       </nav>
-      <button
-        className="justify-center self-stretch sm:self-auto px-6 py-5 text-base leading-6 text-center text-white rounded-2xl bg-neutral-900 max-md:px-5 font-light w-full sm:w-auto"
-        onClick={() => alert("Download Now button clicked")}
-      >
-        Download Now
-      </button>
+      <div className=" flex gap-1">
+        <Link
+          className="justify-center self-stretch sm:self-auto px-6 py-5 text-base leading-6 text-center text-white rounded-2xl bg-neutral-900 max-md:px-5 font-light w-full sm:w-auto"
+          to={'/login'}
+        >
+          Login
+        </Link>
+        <Link
+          className="justify-center self-stretch sm:self-auto px-6 py-5 text-base leading-6 text-center text-white rounded-2xl bg-neutral-900 max-md:px-5 font-light w-full sm:w-auto"
+          to={'/register'}
+        >
+          Register
+        </Link>
+      </div>
     </div>
   );
 }

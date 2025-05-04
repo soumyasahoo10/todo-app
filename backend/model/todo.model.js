@@ -9,11 +9,12 @@ const todoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    completed:{
-        type: Boolean,
+    userId:{
+        type: String,
+        ref: "User",
         required: true
     }
-});
+}, { timestamps: true });
 
 const Todo = mongoose.model('Todo', todoSchema);
 

@@ -1,19 +1,24 @@
-import Todo from '../model/model.js'
+import Todo from '../model/todo.model.js'
 
 
 export const addTodo = async(req, res) => {
     const todo = req.body;
-    
-    if (!todo){
-        return res.status(500).json({success: false, message: "no payload found"})
+    if (!todo || !todo.title || !todo.todo || !todo.userId) {
+        return res.status(400).json({
+            success: false,
+            message: "Missing required fields: title, todo, or userId"
+        });
     }
-    
+    // if (!todo){
+    //     return res.status(500).json({success: false, message: "no payload found"})
+    // }
     try {
         const newTodo = new Todo(todo);
+        // console.log(newTodo);
         await newTodo.save();
         res.status(200).json({success: true, message: "todo saved to db", data: todo})
     } catch (error) {
-        console.error("Error uploading payload")
+        console.error("Error uploading payload", error)
         return res.status(500).json({success: false, message: "Error uploading payload"})
     }
 };
