@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Start Typing Below</h2>
+    <textarea id="note" rows="10" cols="50" placeholder="Type something..."></textarea>
+    <p id="status"></p>
+
+    <script>
+        const textarea = document.getElementById('note');
+        const status = document.getElementById('status');
+        let typingtimeout;
+
+        textarea.addEventListener('input', () => {
+            if (typingtimeout) clearTimeout(typingtimeout); // check if there's any ongoing timer in the call-stack, if there's one reset it i.e. clearTimeout.
+
+            typingtimeout = setTimeout(() => {// create a setTimeout function to run the save comands for db.
+                const content = textarea.value;
+                console.log('Saving', content);
+                status.textContent = 'Saved at ' + new Date().toLocaleTimeString();
+            }, 1000);
+        })
+    </script>
+</body>
+</html>
+
+
+<!-- the main thing is to avoid the request flood in the db. -->
