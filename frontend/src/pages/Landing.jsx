@@ -1,11 +1,9 @@
 import React from 'react';
-import { useAuth0 } from '@auth0/auth0-react'
+import { useAuth0 } from '@auth0/auth0-react';
+
 
 export default function LandingPage() {
-
-  const { user, loginWithRedirect } = useAuth0();
-
-  user && console.log("Current user", user);
+  const { loginWithRedirect } = useAuth0();
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100 text-black font-mono px-4">

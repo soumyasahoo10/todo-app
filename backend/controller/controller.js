@@ -70,22 +70,24 @@ export const addUser = async (req, res) => {
   const { sub, name, picture, email } = req.body;
 
   if (!sub || !name || !picture || !email) {
+    console.log("Missing fields:", req.body);
     return res.status(400).json({ message: "Missing user data" });
   }
 
   try {
     const updatedUser = await User.findOneAndUpdate(
-      { userId: sub },                       // filter
-      { userId: sub, name, picture, email }, // include userId here too
-      { new: true, upsert: true }
+        { userId: sub },
+        { userId: sub, name, picture, email },
+        { new: true, upsert: true }
     );
-
+    console.log("Saved user:", updatedUser); // ✅ Add this
     res.status(200).json({ success: true, message: "User added successfully", user: updatedUser });
   } catch (error) {
-    console.error(error);
+    console.error("DB error:", error);
     res.status(500).json({ success: false, message: error.message });
   }
 };
+
 
 
 

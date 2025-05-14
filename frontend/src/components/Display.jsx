@@ -5,11 +5,13 @@ function Display() {
   const selectedTodo = store((state) => state.selectedTodo);
   const updateTodo = store((state) => state.updateTodo);
   const fetchTodo = store((state) => state.fetchTodo);
+  const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [typingTimeout, setTypingTimeout] = useState(null);
 
   useEffect(() => {
     if (selectedTodo) {
+      setTitle(selectedTodo.title);
       setBody(selectedTodo.todo);
     }
   }, [selectedTodo]);
@@ -22,11 +24,11 @@ function Display() {
 
     // Set a new timeout
     const timeout = setTimeout(() => {
-      const updated = { ...selectedTodo, todo: body };
+      const updated = { ...selectedTodo, title:title, todo:body };
       updateTodo(selectedTodo._id, updated);
       fetchTodo();
-      // console.log("Auto-saved:", updated);
-    }, 1000); // Adjust debounce delay as needed
+      console.log("Auto-saved:", updated);
+    }, 500); // Adjust debounce delay as needed
 
     setTypingTimeout(timeout);
 
@@ -39,7 +41,7 @@ function Display() {
       <div className="flex-1 p-8">
         {selectedTodo ? (
           <div>
-            <h1 className="text-3xl font-bold">{selectedTodo.title}</h1>
+            <input type='text' value={title} onChange={(e) => setTitle(e.target.value)} className="text-3xl font-bold"/>
             <textarea
               value={body}
               onChange={(e) => setBody(e.target.value)}

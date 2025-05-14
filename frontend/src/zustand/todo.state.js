@@ -1,8 +1,6 @@
-import { useAuth0 } from '@auth0/auth0-react';
 import { create } from 'zustand';
-const { user, loginWithRedirect } = useAuth0();
 
-const store = create((set) => ({
+const noteStore = create((set) => ({
     todos: [],
     selectedTodo: null,
 
@@ -78,4 +76,4 @@ const store = create((set) => ({
     },
 }));
 
-export default store;
+export default noteStore;
