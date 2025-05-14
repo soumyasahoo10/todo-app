@@ -3,10 +3,8 @@ import { Link } from 'react-router-dom'
 
 function Navbar() {
   const navItems = [
-    { text: "Experience"},
-    { text: "Testimonials"},
-    { text: "Pricing"},
-    { text: "FAQ"},
+    { text: "Export"},
+    { text: "Share"},
   ];
 
   return (
