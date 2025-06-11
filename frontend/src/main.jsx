@@ -5,6 +5,8 @@ import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } 
 import Layout from './Layout.jsx'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
+import { Auth0Provider } from '@auth0/auth0-react'
+
 
 
 const routes = createBrowserRouter(
@@ -18,9 +20,17 @@ const routes = createBrowserRouter(
 )
 
 
-
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={routes} />
+    <Auth0Provider
+      cacheLocation="localstorage" // persists login even on hard refresh
+      useRefreshTokens={true} // refresh tokens silently
+      domain="dev-wcw3ytnc8wfuwgjc.us.auth0.com"
+      clientId="sRuqF6ub4auKg0Z9VA1RdrW6LXVwqrnt"
+      authorizationParams={{
+        redirect_uri: window.location.origin
+    }}>
+      <RouterProvider router={routes} />
+    </Auth0Provider>
   </StrictMode>,
 )

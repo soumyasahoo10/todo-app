@@ -1,9 +1,10 @@
+import { useAuth0 } from '@auth0/auth0-react';
 import { create } from 'zustand';
+const { user, loginWithRedirect } = useAuth0();
 
 const store = create((set) => ({
     todos: [],
     selectedTodo: null,
-
 
     // set the todo for display
     setSelectedTodo: ((todo) => set({selectedTodo: todo})),
@@ -74,7 +75,7 @@ const store = create((set) => ({
                 todos: state.todos.filter((e) => e._id !== id)
             }))
         }
-    }
+    },
 }));
 
 export default store;

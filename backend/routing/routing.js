@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addTodo, fetchAll, updateTodo, deleteTodo } from '../controller/controller.js';
+import { addTodo, fetchAll, updateTodo, deleteTodo, addUser } from '../controller/controller.js';
 
 const router = Router();
 
@@ -14,5 +14,8 @@ router.put('/:id', updateTodo);
 
 // delete a todo
 router.delete('/:id', deleteTodo);
+
+// add a user
+router.post('/login', addUser);
 
 export default router;

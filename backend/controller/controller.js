@@ -1,4 +1,5 @@
 import Todo from '../model/todo.model.js'
+import User from '../model/user.model.js';
 
 
 export const addTodo = async(req, res) => {
@@ -19,7 +20,7 @@ export const addTodo = async(req, res) => {
         res.status(200).json({success: true, message: "todo saved to db", data: todo})
     } catch (error) {
         console.error("Error uploading payload", error)
-        return res.status(500).json({success: false, message: "Error uploading payload"})
+        return res.status(500).json({success: false, message: error})
     }
 };
 
@@ -61,5 +62,41 @@ export const deleteTodo = async (req, res) => {
         res.status(200).json({success: true, message: "Todo deleted successfully"})
     } catch (error) {
         res.status(500).json({success: false, message: "Todo deletion failed"})
+    }
+};
+
+
+export const addUser = async (req, res) => {
+  const { sub, name, picture, email } = req.body;
+
+  if (!sub || !name || !picture || !email) {
+    return res.status(400).json({ message: "Missing user data" });
+  }
+
+  try {
+    const updatedUser = await User.findOneAndUpdate(
+      { userId: sub },                       // filter
+      { userId: sub, name, picture, email }, // include userId here too
+      { new: true, upsert: true }
+    );
+
+    res.status(200).json({ success: true, message: "User added successfully", user: updatedUser });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+
+
+export const getByUserId = async (req, res) => {
+    const { id } = req.params;
+    
+    try {
+        const data = await Todo.find({userId: id});
+        res.status(200).json({success: true, message: "Notes fetched successfully", data})
+    }
+    catch (error) {
+        res.status(500).json({success: false, message: "Notes fetching failed"})
     }
 };

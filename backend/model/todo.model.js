@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const todoSchema = new mongoose.Schema({
+const noteSchema = new mongoose.Schema({
     title:{
         type: String,
         required: true
@@ -11,11 +11,10 @@ const todoSchema = new mongoose.Schema({
     },
     userId:{
         type: String,
-        ref: "User",
         required: true
     }
-}, { timestamps: true });
+}, {timestamps: true});
 
-const Todo = mongoose.model('Todo', todoSchema);
+const Todo = mongoose.model('note', noteSchema);
 
 export default Todo;

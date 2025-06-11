@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
+import store from '../zustand/todo.state';
 
 function Navbar() {
   const navItems = [
     { text: "Export"},
     { text: "Share"},
   ];
+
+  const { logout } = useAuth0();
+
+  const user = store((state) => state.user);
 
   return (
     <div className="flex gap-5 justify-between items-center py-1.5 px-6 rounded-b-xl backdrop-blur-[17.5px] bg-opacity-80 w-full max-w-full flex-wrap sm:flex-nowrap sm:py-4 sm:px-10 bg-slate-300">
@@ -29,19 +33,11 @@ function Navbar() {
           </div>
         ))}
       </nav>
-      <div className=" flex gap-1">
-        <Link
-          className="justify-center self-stretch sm:self-auto px-6 py-5 text-base leading-6 text-center text-white rounded-2xl bg-neutral-900 max-md:px-5 font-light w-full sm:w-auto"
-          to={'/login'}
-        >
-          Login
-        </Link>
-        <Link
-          className="justify-center self-stretch sm:self-auto px-6 py-5 text-base leading-6 text-center text-white rounded-2xl bg-neutral-900 max-md:px-5 font-light w-full sm:w-auto"
-          to={'/register'}
-        >
-          Register
-        </Link>
+      <div className="flex justify-between">
+        <img src={user?.picture} className="my-auto w-10 h-10 rounded-full object-cover align-items" alt={user?.name} />
+        <button className="hover:cursor-pointer justify-center self-stretch sm:self-auto px-6 py-5 text-base leading-6 text-center text-white rounded-2xl bg-neutral-900 max-md:px-5 font-light w-full sm:w-auto" onClick={(e) => logout()}>
+          Logout
+        </button>
       </div>
     </div>
   );
