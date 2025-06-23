@@ -7,7 +7,7 @@ const noteSchema = new mongoose.Schema({
     },
     todo:{
         type: String,
-        required: true
+        required: false,
     },
     userId:{
         type: String,

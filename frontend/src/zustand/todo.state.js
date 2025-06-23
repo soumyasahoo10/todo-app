@@ -9,12 +9,14 @@ const noteStore = create((set) => ({
 
     
     // fetch all todos
-    fetchTodo: async () => {
-        const response = await fetch('http://localhost:3000/api/', {
+    fetchTodo: async (id) => {
+        const response = await fetch(`http://localhost:3000/api/user?id=${id}`, {
             method: 'GET'
         });
 
         const data = await response.json();
+        console.log(data);
+        
         if(data.success){
             set({todos: data.data});
             return data.message
@@ -36,7 +38,8 @@ const noteStore = create((set) => ({
         if (data.success){
             set((state) => ({
                 todos: [...state.todos, data.data]
-            }))
+            }));
+            return data;
         }
     },
 

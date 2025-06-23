@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 import store from '../zustand/todo.state';
 
 function Display() {
@@ -8,6 +9,8 @@ function Display() {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [typingTimeout, setTypingTimeout] = useState(null);
+  const { user } = useAuth0();
+
 
   useEffect(() => {
     if (selectedTodo) {
@@ -16,32 +19,34 @@ function Display() {
     }
   }, [selectedTodo]);
 
+  // Update on both title and body change with debounce
   useEffect(() => {
     if (!selectedTodo) return;
 
-    // Clear the previous timeout
     if (typingTimeout) clearTimeout(typingTimeout);
 
-    // Set a new timeout
     const timeout = setTimeout(() => {
-      const updated = { ...selectedTodo, title:title, todo:body };
+      const updated = { ...selectedTodo, title, todo: body };
       updateTodo(selectedTodo._id, updated);
-      fetchTodo();
-      console.log("Auto-saved:", updated);
-    }, 500); // Adjust debounce delay as needed
+      fetchTodo(user.sub); // To refresh sidebar
+    }, 500);
 
     setTypingTimeout(timeout);
-
-    // Cleanup on unmount or next effect
     return () => clearTimeout(timeout);
-  }, [body]);
+  }, [title, body]); // ← include both
 
   return (
     <div className="flex h-screen rounded-xl w-screen bg-slate-100">
       <div className="flex-1 p-8">
         {selectedTodo ? (
           <div>
-            <input type='text' value={title} onChange={(e) => setTitle(e.target.value)} className="text-3xl font-bold"/>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="text-3xl font-bold bg-transparent outline-none"
+              placeholder="Title"
+            />
             <textarea
               value={body}
               onChange={(e) => setBody(e.target.value)}

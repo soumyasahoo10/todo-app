@@ -18,21 +18,25 @@ export default function Layout() {
 
     // macro creation
     useEffect(() => {
-        const handleKeydown = (e) => {
-            if (e.shiftKey && e.key.toLowerCase() === 'n'){
+        const handleKeydown = async (e) => {
+            if (e.shiftKey && e.key.toLowerCase() === 'n') {
                 e.preventDefault();
-                const todo = {title: "dummy", todo:" ", userId: user?.sub};
-                addTodo(todo)
-                setSelectedTodo(todo)
-                fetchTodo()
-            }
-        }
-        window.addEventListener('keydown', handleKeydown);
+                if (!user?.sub) return;
 
+                const todo = { title: "New note", todo: "", userId: user.sub };
+                const saved = await addTodo(todo);
+                if (saved) {
+                    setSelectedTodo(saved.data); // ✅ use the saved one with _id
+                }
+            }
+        };
+
+        window.addEventListener('keydown', handleKeydown);
         return () => {
             window.removeEventListener('keydown', handleKeydown);
-        }
-    }, [user])
+        };
+    }, [user, addTodo, setSelectedTodo]);
+
     
     // added user creds to db.
     useEffect(() => {
@@ -50,16 +54,17 @@ export default function Layout() {
     
     // fetch and load notes from db to zstd state.
     useEffect(() => {
+        if (!user || !isAuthenticated || isLoading) return;
+
         const fetchData = async () => {
         try {
-            await fetchTodo();
+            await fetchTodo(user.sub);
         } catch (error) {
             console.error(error);
         }
         };
         fetchData();    
-    }, [fetchTodo])
-
+    }, [isAuthenticated]);
     // console.log(user);
     
     return user ? (

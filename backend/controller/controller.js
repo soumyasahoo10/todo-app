@@ -4,20 +4,17 @@ import User from '../model/user.model.js';
 
 export const addTodo = async(req, res) => {
     const todo = req.body;
-    if (!todo || !todo.title || !todo.todo || !todo.userId) {
+    if (!todo || !todo.title || todo.todo === undefined  || !todo.userId) {
         return res.status(400).json({
             success: false,
             message: "Missing required fields: title, todo, or userId"
         });
     }
-    // if (!todo){
-    //     return res.status(500).json({success: false, message: "no payload found"})
-    // }
     try {
         const newTodo = new Todo(todo);
         // console.log(newTodo);
         await newTodo.save();
-        res.status(200).json({success: true, message: "todo saved to db", data: todo})
+        res.status(200).json({success: true, message: "todo saved to db", data: newTodo})
     } catch (error) {
         console.error("Error uploading payload", error)
         return res.status(500).json({success: false, message: error})
@@ -80,7 +77,7 @@ export const addUser = async (req, res) => {
         { userId: sub, name, picture, email },
         { new: true, upsert: true }
     );
-    console.log("Saved user:", updatedUser); // ✅ Add this
+    // console.log("Saved user:", updatedUser); // ✅ Add this
     res.status(200).json({ success: true, message: "User added successfully", user: updatedUser });
   } catch (error) {
     console.error("DB error:", error);
@@ -90,15 +87,13 @@ export const addUser = async (req, res) => {
 
 
 
-
 export const getByUserId = async (req, res) => {
-    const { id } = req.params;
-    
+    const { id } = req.query; // ✅ using req.query instead of req.params
+    // console.log("Fetching notes for userId:", id);
     try {
-        const data = await Todo.find({userId: id});
-        res.status(200).json({success: true, message: "Notes fetched successfully", data})
+        const data = await Todo.find({ userId: id });
+        res.status(200).json({ success: true, message: "Notes fetched successfully", data });
+    } catch (error) {
+        res.status(500).json({ success: false, message: "Notes fetching failed" });
     }
-    catch (error) {
-        res.status(500).json({success: false, message: "Notes fetching failed"})
-    }
-};
+};  
