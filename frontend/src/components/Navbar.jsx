@@ -9,7 +9,7 @@ function Navbar() {
 
   const { logout } = useAuth0();
 
-  const user = store((state) => state.user);w
+  const user = store((state) => state.user);
   
 
   return (
