@@ -1,5 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import store from '../zustand/todo.state';
+import store from '../zustand/user.state';
 
 function Navbar() {
   const navItems = [
@@ -9,7 +9,8 @@ function Navbar() {
 
   const { logout } = useAuth0();
 
-  const user = store((state) => state.user);
+  const user = store((state) => state.user);w
+  
 
   return (
     <div className="flex gap-5 justify-between items-center py-1.5 px-6 rounded-b-xl backdrop-blur-[17.5px] bg-opacity-80 w-full max-w-full flex-wrap sm:flex-nowrap sm:py-4 sm:px-10 bg-slate-300">

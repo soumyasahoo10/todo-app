@@ -15,7 +15,7 @@ const noteStore = create((set) => ({
         });
 
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         
         if(data.success){
             set({todos: data.data});
