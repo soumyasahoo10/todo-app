@@ -1,20 +1,60 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+
+const checklistItemSchema = new mongoose.Schema({
+    id: { type: String, required: true },
+    text: { type: String, required: true },
+    completed: { type: Boolean, default: false }
+}, { _id: false });
 
 const noteSchema = new mongoose.Schema({
-    title:{
+    title: {
         type: String,
-        required: true
+        default: 'Untitled Note',
+        trim: true
     },
-    todo:{
+    todo: {
         type: String,
-        required: false,
+        default: ''
     },
-    userId:{
+    userId: {
         type: String,
-        required: true
+        required: true,
+        index: true
+    },
+    category: {
+        type: String,
+        default: 'General',
+        trim: true
+    },
+    tags: {
+        type: [String],
+        default: []
+    },
+    isPinned: {
+        type: Boolean,
+        default: false
+    },
+    isFavorite: {
+        type: Boolean,
+        default: false
+    },
+    isArchived: {
+        type: Boolean,
+        default: false
+    },
+    color: {
+        type: String,
+        default: 'default'
+    },
+    checklist: {
+        type: [checklistItemSchema],
+        default: []
     }
-}, {timestamps: true});
+}, { timestamps: true });
 
-const Todo = mongoose.model('note', noteSchema);
+noteSchema.index({ userId: 1, updatedAt: -1 });
+noteSchema.index({ userId: 1, isPinned: -1 });
+
+const Todo = mongoose.models.note || mongoose.model('note', noteSchema);
 
 export default Todo;

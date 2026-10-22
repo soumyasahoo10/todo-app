@@ -1,0 +1,149 @@
+{
+  "users": [
+    {
+      "userId": "guest_user_demo",
+      "name": "Demo Explorer",
+      "email": "guest@slate.app",
+      "picture": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
+      "theme": "dark"
+    },
+    {
+      "userId": "google-oauth2|107873386058739146567",
+      "name": "Swaroop Baibhav",
+      "email": "swaroopbaibhav@gmail.com",
+      "picture": "https://lh3.googleusercontent.com/a/ACg8ocLc5cyMXlrnluc0N9sVgoKMjMnUhEhLq6k2tBCjwNzDp44EIkPv=s96-c",
+      "theme": "dark",
+      "lastLogin": "2026-10-22T13:12:25.277Z"
+    }
+  ],
+  "todos": [
+    {
+      "_id": "sample_note_1",
+      "title": "Welcome to Slate 📝",
+      "todo": "# Welcome to Slate v2.0\n\nThe lightning-fast note-taking and task application built for deep focus.\n\n### ✨ Key Features\n- **Instant Auto-Save**: Never worry about losing a single keystroke.\n- **Markdown Support**: Headers, code blocks, lists, and quotes.\n- **Pin & Organize**: Pin your most critical notes to the top.\n- **Interactive Checklists**: Keep track of projects effortlessly.\n- **Keyboard Shortcuts**: Press `Shift + N` for a new note, `Ctrl + K` to search.\n\n> \"Simplicity is the prerequisite for reliability.\" — Edsger W. Dijkstra",
+      "userId": "guest_user_demo",
+      "category": "Ideas",
+      "tags": [
+        "welcome",
+        "slate",
+        "guide"
+      ],
+      "isPinned": true,
+      "isFavorite": true,
+      "isArchived": false,
+      "color": "indigo",
+      "checklist": [
+        {
+          "id": "chk_1",
+          "text": "Explore the Slate interface",
+          "completed": true
+        },
+        {
+          "id": "chk_2",
+          "text": "Create your first custom note (Shift + N)",
+          "completed": false
+        },
+        {
+          "id": "chk_3",
+          "text": "Try switching to Split Preview mode",
+          "completed": false
+        }
+      ],
+      "createdAt": "2026-10-22T12:13:24.024Z",
+      "updatedAt": "2026-10-22T12:13:24.025Z"
+    },
+    {
+      "_id": "sample_note_2",
+      "title": "Project Roadmap 🚀",
+      "todo": "## Q4 Milestone Goals\n\n1. Complete full-stack MERN architecture refactor\n2. Introduce live markdown editor with split preview\n3. Polish micro-animations and dark mode UI\n4. Add export to Markdown (.md) and PDF\n\n```javascript\n// Quick code snippet\nconst productivityScore = (tasksCompleted, focusHours) => {\n  return (tasksCompleted * 10) + (focusHours * 25);\n};\n```",
+      "userId": "guest_user_demo",
+      "category": "Work",
+      "tags": [
+        "dev",
+        "roadmap"
+      ],
+      "isPinned": false,
+      "isFavorite": true,
+      "isArchived": false,
+      "color": "emerald",
+      "checklist": [
+        {
+          "id": "chk_4",
+          "text": "Define API schema",
+          "completed": true
+        },
+        {
+          "id": "chk_5",
+          "text": "Write integration tests",
+          "completed": false
+        }
+      ],
+      "createdAt": "2026-10-22T11:13:24.025Z",
+      "updatedAt": "2026-10-22T11:43:24.025Z"
+    },
+    {
+      "_id": "seed_ae2iqqz",
+      "title": "Welcome to Slate 📝",
+      "todo": "# Welcome to Slate v2.0\n\nThe lightning-fast note-taking and task application built for deep focus.\n\n### ✨ Key Features\n- **Instant Auto-Save**: Never worry about losing a single keystroke.\n- **Markdown Support**: Headers, code blocks, lists, and quotes.\n- **Pin & Organize**: Pin your most critical notes to the top.\n- **Interactive Checklists**: Keep \ntrack of projects effortlessly.\n- **Keyboard Shortcuts**: Press `Shift + N` for a new note, `Ctrl + K` to search.\n\n> \"Simplicity is the prerequisite for reliability.\" — Edsger W. Dijkstra\n",
+      "userId": "google-oauth2|107873386058739146567",
+      "category": "Ideas",
+      "tags": [
+        "welcome",
+        "slate",
+        "guide"
+      ],
+      "isPinned": true,
+      "isFavorite": true,
+      "isArchived": false,
+      "color": "indigo",
+      "checklist": [
+        {
+          "id": "chk_1",
+          "text": "Explore the Slate interface",
+          "completed": true
+        },
+        {
+          "id": "chk_2",
+          "text": "Create your first custom note (Shift + N)",
+          "completed": false
+        },
+        {
+          "id": "chk_3",
+          "text": "Try switching to Split Preview mode",
+          "completed": false
+        }
+      ],
+      "createdAt": "2026-10-22T13:12:23.228Z",
+      "updatedAt": "2026-10-22T13:13:07.053Z"
+    },
+    {
+      "_id": "seed_4efpxe9",
+      "title": "Project Roadmap 🚀",
+      "todo": "## Q4 Milestone Goals\n\n1. Complete full-stack MERN architecture refactor\n2. Introduce live markdown editor with split preview\n3. Polish micro-animations and dark mode UI\n4. Add export to Markdown (.md) and PDF\n\n```javascript\n// Quick code snippet\nconst productivityScore = (tasksCompleted, focusHours) => {\n  return (tasksCompleted * 10) + (focusHours * 25);\n};\n```",
+      "userId": "google-oauth2|107873386058739146567",
+      "category": "Work",
+      "tags": [
+        "dev",
+        "roadmap"
+      ],
+      "isPinned": false,
+      "isFavorite": true,
+      "isArchived": false,
+      "color": "emerald",
+      "checklist": [
+        {
+          "id": "chk_4",
+          "text": "Define API schema",
+          "completed": true
+        },
+        {
+          "id": "chk_5",
+          "text": "Write integration tests",
+          "completed": false
+        }
+      ],
+      "createdAt": "2026-10-22T13:12:23.228Z",
+      "updatedAt": "2026-10-22T13:12:23.228Z"
+    }
+  ]
+}

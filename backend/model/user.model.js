@@ -5,20 +5,33 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
+        index: true
     },
     name: {
         type: String, 
-        required: true
+        required: true,
+        trim: true
     },
     email: {
-        type: String,
-        required: true
+        type: String, 
+        required: true,
+        trim: true
     },
     picture: {
-        type: String, 
+        type: String,
+        default: ''
     },
+    theme: {
+        type: String,
+        enum: ['dark', 'light', 'system'],
+        default: 'dark'
+    },
+    lastLogin: {
+        type: Date,
+        default: Date.now
+    }
 }, { timestamps: true });
 
-const User = mongoose.model('user', userSchema);
+const User = mongoose.models.user || mongoose.model('user', userSchema);
 
 export default User;

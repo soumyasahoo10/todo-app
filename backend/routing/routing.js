@@ -1,25 +1,45 @@
 import { Router } from "express";
-import { addTodo, fetchAll, updateTodo, deleteTodo, addUser, getByUserId } from '../controller/controller.js';
+import {
+    addTodo,
+    fetchAll,
+    updateTodo,
+    deleteTodo,
+    addUser,
+    getByUserId,
+    getTodoById,
+    togglePin,
+    toggleFavorite,
+    toggleArchive,
+    getUserStats,
+    healthCheck
+} from '../controller/controller.js';
 
 const router = Router();
 
-// add a todo
-router.post('/', addTodo);
+// Healthcheck
+router.get('/health', healthCheck);
 
-// send all the saved todos
-router.get('/', fetchAll);
+// Stats
+router.get('/stats', getUserStats);
 
-// update a todo
-router.put('/:id', updateTodo);
-
-// delete a todo
-router.delete('/:id', deleteTodo);
-
-// add a user
+// User auth/upsert
 router.post('/login', addUser);
 
-// get note by user id
+// Get notes by user id
 router.get('/user', getByUserId);
 
+// Note CRUD routes
+router.get('/', fetchAll);
+router.post('/', addTodo);
+router.post('/todos', addTodo);
+
+router.get('/:id', getTodoById);
+router.put('/:id', updateTodo);
+router.delete('/:id', deleteTodo);
+
+// Quick toggle actions
+router.patch('/:id/pin', togglePin);
+router.patch('/:id/favorite', toggleFavorite);
+router.patch('/:id/archive', toggleArchive);
 
 export default router;
